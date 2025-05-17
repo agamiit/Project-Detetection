@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fraud Detection Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      font-family: 'Inter', sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+    h2 {
+      text-align: center;
+      color: #ffa726;
+      margin-bottom: 20px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background: #ffa726;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-submit:hover {
+      background: #ffb74d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center text-warning">Welcome to Fraud Detection System</h2>
+    <p class="mt-4">
+      Fraud detection is a critical process in identifying and preventing fraudulent activities in financial transactions. 
+      Our system leverages advanced algorithms and machine learning models to analyze transaction patterns and detect anomalies 
+      that may indicate fraudulent behavior.
+    </p>
+    <p>
+      With this system, you can:
+      <ul>
+        <li>Monitor recent transactions in real-time.</li>
+        <li>Analyze sender and receiver balances to detect irregularities.</li>
+        <li>Predict whether a transaction is fraudulent or legitimate using advanced models.</li>
+      </ul>
+    </p>
+    <p>
+      Start by logging in or signing up to access the system. Once logged in, you can enter transaction details, view recent transactions, 
+      and get insights into potential fraud risks.
+    </p>
+    <div class="text-center mt-4">
+      <a href="/login" class="btn btn-warning btn-lg">Login</a>
+      <a href="/signup" class="btn btn-outline-warning btn-lg">Sign Up</a>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <h2 class="text-center text-warning">Recent Transactions</h2>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <th>Sender ID</th>
+          <th>Receiver ID</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaction in transactions %}
+        <tr>
+          <td>{{ transaction.transaction_id }}</td>
+          <td>{{ transaction.sender_id }}</td>
+          <td>{{ transaction.receiver_id }}</td>
+          <td>${{ transaction.amount }}</td>
+          <td>{{ transaction.transaction_type }}</td>
+          <td class="{{ 'text-danger' if transaction.is_fraud else 'text-success' }}">
+            {{ 'Fraud' if transaction.is_fraud else 'Legitimate' }}
+          </td>
+          <td>{{ transaction.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

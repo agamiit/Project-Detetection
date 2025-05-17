@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Enter Transaction Details{% endblock %}
+
+{% block content %}
+<h2 class="text-center text-warning">Enter Transaction Details</h2>
+<form action="/enter-details" method="POST">
+  <div class="mb-3">
+    <label for="sender-id" class="form-label">Sender ID</label>
+    <input type="text" class="form-control" id="sender-id" name="sender_id" placeholder="Enter Sender ID" required>
+  </div>
+  <div class="mb-3">
+    <label for="receiver-id" class="form-label">Receiver ID</label>
+    <input type="text" class="form-control" id="receiver-id" name="receiver_id" placeholder="Enter Receiver ID" required>
+  </div>
+  <div class="mb-3">
+    <label for="transaction-id" class="form-label">Transaction ID</label>
+    <input type="text" class="form-control" id="transaction-id" name="transaction_id" placeholder="Enter Transaction ID" required>
+  </div>
+  <div class="mb-3">
+    <label for="amount" class="form-label">Amount</label>
+    <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+  </div>
+  <div class="mb-3">
+    <label for="transaction-type" class="form-label">Transaction Type</label>
+    <select class="form-select" id="transaction-type" name="transaction_type" required>
+      <option value="">Select Transaction Type</option>
+      <option value="credit-card">Credit Card</option>
+      <option value="debit-card">Debit Card</option>
+      <option value="cash">Cash</option>
+      <option value="net-banking">Net Banking</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-warning w-100">Submit</button>
+</form>
+{% endblock %}

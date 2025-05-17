@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Transaction Result{% endblock %}
+
+{% block content %}
+<h2 class="text-center text-warning">Transaction Result</h2>
+<div class="card bg-dark text-light">
+  <div class="card-body">
+    <h5 class="card-title">Transaction Details</h5>
+    <p><strong>Sender Old Balance:</strong> {{ features.sender_old_balance }}</p>
+    <p><strong>Receiver Old Balance:</strong> {{ features.receiver_old_balance }}</p>
+    <p><strong>Sender New Balance:</strong> {{ features.sender_new_balance }}</p>
+    <p><strong>Receiver New Balance:</strong> {{ features.receiver_new_balance }}</p>
+    <p><strong>Sender Balance Difference:</strong> {{ features.sender_balance_diff }}</p>
+    <p><strong>Receiver Balance Difference:</strong> {{ features.receiver_balance_diff }}</p>
+    <p><strong>Fraud Status:</strong> 
+      <span class="{{ 'text-danger' if is_fraud else 'text-success' }}">
+        {{ 'Fraud' if is_fraud else 'Not Fraud' }}
+      </span>
+    </p>
+  </div>
+</div>
+{% endblock %}
